@@ -62,7 +62,7 @@ class SupervisedModel(object):
     def predict(self, texts, k=1):
         all_labels = []
         for text in texts:
-            if text[-1] != '\n':
+            if text == "" or text[-1] != '\n':
                 text += '\n'
             labels = self._model.classifier_predict(text, k,
                     self.label_prefix, self.encoding)
@@ -72,7 +72,7 @@ class SupervisedModel(object):
     def predict_proba(self, texts, k=1):
         results = []
         for text in texts:
-            if text[-1] != '\n':
+            if text == "" or text[-1] != '\n':
                 text += '\n'
             result = self._model.classifier_predict_prob(text, k,
                     self.label_prefix, self.encoding)
